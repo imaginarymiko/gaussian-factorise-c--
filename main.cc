@@ -12,6 +12,38 @@ int getRandomInt(int min, int max) {
     return distribution(gen);
 }
 
+void printHelp() {
+    cout << "Gaussian Integer Factoriser (C++)\n";
+    cout << "Usage:\n";
+    cout << "    ./gaussian-factorise\n";
+    cout << "    ./gaussian-factorise -help\n";
+    cout << "    ./gaussian-factorise -h\n";
+    cout << "    ./gaussian-factorise help\n";
+    cout << "    ./gaussian-factorise h\n";
+    cout << "    ./gaussian-factorise [integer]\n";
+    cout << "    ./gaussian-factorise -random\n";
+    cout << "    ./gaussian-factorise -r\n";
+    cout << "    ./gaussian-factorise random\n";
+    cout << "    ./gaussian-factorise r\n";
+    cout << "\n";
+    cout << "If no argument is given, the program will prompt the user for an Gaussian integer.\n";
+    cout << "If the provided Gaussian integer is \"random\" or \"r\", the program will generate a random integer.\n";
+    cout << "Otherwise, the argument will be interpreted as an integer.\n";
+    cout << "\n";
+    cout << "The program will then factorise the integer into Gaussian primes.\n";
+    cout << "\n";
+    cout << "Also accepts j as the imaginary unit. a + bi and bi + a are both accepted forms.\n";
+    cout << "\n";
+    cout << "Examples:\n";
+    cout << "    ./gaussian-factorise 2 \n";
+    cout << "        Output: (-i)(1 + i)(1 + i)\n";
+    cout << "    ./gaussian-factorise 7\n";
+    cout << "        Output: (7)\n";
+    cout << "    ./gaussian-factorise 425 - 470i\n";
+    cout << "        Output: (-1)(1 + 2i)(2 + i)(94 + 85i)\n";
+    cout << endl;
+}
+
 int main(int argc, char** argv) {
     string arg;
     if (argc > 1) arg = argv[1];
@@ -28,6 +60,8 @@ int main(int argc, char** argv) {
                     int real = getRandomInt(-1000, 1000);
                     int imag = getRandomInt(-1000, 1000);
                     g = GaussianInteger(real, imag);
+                } else if (input == "help" || input == "h") {
+                    printHelp();
                 } else {
                     g = fromString(input);
                 }
@@ -48,6 +82,8 @@ int main(int argc, char** argv) {
                 cout << ("(" + factor.toString() + ")");
             }
             cout << endl;
+        } else if (arg == "-help" || arg == "-h" || arg == "help" || arg == "h") {
+            printHelp();
         } else {
             string input = "";
             for (int i = 1; i < argc; i++) {

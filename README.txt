@@ -1,6 +1,11 @@
 Gaussian Integer Factoriser (C++)
 
 Usage:
+    ./gaussian-factorise
+    ./gaussian-factorise -help
+    ./gaussian-factorise -h
+    ./gaussian-factorise help
+    ./gaussian-factorise h
     ./gaussian-factorise [integer]
     ./gaussian-factorise -random
     ./gaussian-factorise -r
