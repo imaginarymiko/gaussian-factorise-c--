@@ -16,15 +16,9 @@ void printHelp() {
     cout << "Gaussian Integer Factoriser (C++)\n";
     cout << "Usage:\n";
     cout << "    ./gaussian-factorise\n";
-    cout << "    ./gaussian-factorise -help\n";
-    cout << "    ./gaussian-factorise -h\n";
-    cout << "    ./gaussian-factorise help\n";
-    cout << "    ./gaussian-factorise h\n";
+    cout << "    ./gaussian-factorise <-h/-help/h/help>\n";
+    cout << "    ./gaussian-factorise <-r/-random/r/random>\n";
     cout << "    ./gaussian-factorise [integer]\n";
-    cout << "    ./gaussian-factorise -random\n";
-    cout << "    ./gaussian-factorise -r\n";
-    cout << "    ./gaussian-factorise random\n";
-    cout << "    ./gaussian-factorise r\n";
     cout << "\n";
     cout << "If no argument is given, the program will prompt the user for an Gaussian integer.\n";
     cout << "If the provided Gaussian integer is \"random\" or \"r\", the program will generate a random integer.\n";
