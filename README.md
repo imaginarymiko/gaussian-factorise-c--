@@ -2,15 +2,9 @@
 
 ## Usage:
 ```gaussian-factorise```<br>
-```gaussian-factorise -help```<br>
-```gaussian-factorise -h```<br>
-```gaussian-factorise help```<br>
-```gaussian-factorise h```<br>
+```gaussian-factorise <-h/-help/h/help>```<br>
+```gaussian-factorise <-r/-random/r/random>```<br>
 ```gaussian-factorise [integer]```<br>
-```gaussian-factorise -random```<br>
-```gaussian-factorise -r```<br>
-```gaussian-factorise random```<br>
-```gaussian-factorise r```<br>
 
 If no argument is given, the program will prompt the user for an Gaussian integer.
 If the provided Gaussian integer is "`random`" or "`r`", the program will generate a random integer.
