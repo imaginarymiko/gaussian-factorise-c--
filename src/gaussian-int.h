@@ -9,12 +9,10 @@
 #include <cmath>
 #include <cctype>
 
-using namespace std;
-
-const regex REAL_REGEX{"([+-]?\\d+)"};
-const regex IMAG_REGEX{"([+-]?)(\\d*)([ij]?)"};
-const regex REAL_IMAG_REGEX{"([+-]?\\d+)([+-])(\\d*)([ij]?)"};
-const regex IMAG_REAL_REGEX{"([+-]?)(\\d*)([ij])([+-]\\d+)"};
+const std::regex REAL_REGEX{"([+-]?\\d+)"};
+const std::regex IMAG_REGEX{"([+-]?)(\\d*)([ij]?)"};
+const std::regex REAL_IMAG_REGEX{"([+-]?\\d+)([+-])(\\d*)([ij]?)"};
+const std::regex IMAG_REAL_REGEX{"([+-]?)(\\d*)([ij])([+-]\\d+)"};
 
 class GaussianInteger {
     int real;
@@ -41,13 +39,13 @@ class GaussianInteger {
     bool operator!=(const GaussianInteger& rhs) const;
 
     // Methods
-    string toString() const;
+    std::string toString() const;
     GaussianInteger conjugate() const;
     long norm() const;
-    vector<GaussianInteger> factorise() const;
+    std::vector<GaussianInteger> factorise() const;
     GaussianInteger findPrimeFactor() const;
 };
 
-GaussianInteger fromString(string input);
+GaussianInteger fromString(std::string& input);
 long flooredSqrt(long n);
 std::ostream& operator<<(std::ostream& out, const GaussianInteger& g);
