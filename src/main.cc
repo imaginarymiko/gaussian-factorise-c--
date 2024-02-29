@@ -1,6 +1,6 @@
 #include <iostream>
 #include <random>
-#include "gaussian-int.h"
+#include "gaussian-int.hh"
 
 int getRandomInt(int min, int max) {
     // Returns a random integer in the range [min, max]
