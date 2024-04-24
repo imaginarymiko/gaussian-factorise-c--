@@ -109,18 +109,22 @@ std::ostream& operator<<(std::ostream& os, const GaussianInteger& g) {
 // Methods
 std::string GaussianInteger::toString() const {
     std::string real_str = std::to_string(real);
-    std::string imag_str;
-    if (imag == 1) {
-        imag_str = "";
-    } else if (imag == -1) {
-        imag_str = "-";
-    } else {
-        imag_str = std::to_string(imag);
-    }
+    std::string imag_str = std::to_string(imag);
     if (imag == 0) {
         return real_str;
     } else if (real == 0) {
-        return imag_str + "i";
+        switch (imag) {
+            case 1:
+                return "i";
+            case -1:
+                return "-i";
+            default:
+                return imag_str + "i";
+        }
+    } else if (imag == 1) {
+        return real_str + " + i";
+    } else if (imag == -1) {
+        return real_str + " - i";
     } else if (imag > 0) {
         return real_str + " + " + imag_str + "i";
     } else {
@@ -149,7 +153,7 @@ GaussianInteger GaussianInteger::findPrimeFactor() const {
                 if (i % 4 == 3) {
                     return GaussianInteger(i, 0l);
                 } else {
-                    for (long re = flooredSqrt(i); re > 0; re--) {
+                    for (long re = flooredSqrt(i); re > 0; --re) {
                         long im = flooredSqrt(i - re * re);
                         if (re * re + im * im == i) {
                             if (re > INT_MAX || im > INT_MAX) {
@@ -201,7 +205,7 @@ long flooredSqrt(long n) {
     if (n < 0) {
         throw std::invalid_argument("Cannot find square root of negative number");
     } else {
-        return static_cast<long>(sqrt(n));
+        return static_cast<long>(std::sqrt(n));
     }
 }
 

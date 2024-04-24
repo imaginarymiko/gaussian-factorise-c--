@@ -9,10 +9,10 @@
 #include <cmath>
 #include <cctype>
 
-const std::regex REAL_REGEX{"([+-]?\\d+)"};
-const std::regex IMAG_REGEX{"([+-]?)(\\d*)([ij]?)"};
-const std::regex REAL_IMAG_REGEX{"([+-]?\\d+)([+-])(\\d*)([ij]?)"};
-const std::regex IMAG_REAL_REGEX{"([+-]?)(\\d*)([ij])([+-]\\d+)"};
+const std::regex REAL_REGEX{"([+-]?\\d+)$"};
+const std::regex IMAG_REGEX{"([+-]?)(\\d*)([ij]?)$"};
+const std::regex REAL_IMAG_REGEX{"([+-]?\\d+)([+-])(\\d*)([ij]?)$"};
+const std::regex IMAG_REAL_REGEX{"([+-]?)(\\d*)([ij])([+-]\\d+)$"};
 
 class GaussianInteger {
     int real;

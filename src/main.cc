@@ -44,7 +44,7 @@ int main(int argc, char** argv) {
             while (true) {
                 std::cout << "Enter a Gaussian integer: " << std::endl;
                 std::string input;
-                std::cin >> input;
+                std::getline(std::cin, input);
                 GaussianInteger g;
                 if (input == "quit" || input == "q") {
                     break;
