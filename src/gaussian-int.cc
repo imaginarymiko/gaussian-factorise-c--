@@ -180,7 +180,7 @@ long flooredSqrt(long n) {
     else return static_cast<long>(std::sqrt(n));
 }
 
-GaussianInteger fromString(const std::string& input) {
+GaussianInteger fromString(std::string& input) {
     // Parse a string into a GaussianInteger
     int real_comp;
     int imag_comp;

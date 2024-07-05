@@ -1,13 +1,13 @@
 #pragma once
-#include <iostream>
-#include <string>
-#include <regex>
-#include <climits>
-#include <stdexcept>
-#include <vector>
 #include <algorithm>
-#include <cmath>
 #include <cctype>
+#include <climits>
+#include <cmath>
+#include <iostream>
+#include <regex>
+#include <stdexcept>
+#include <string>
+#include <vector>
 
 const std::regex REAL_REGEX{"([+-]?\\d+)$"};
 const std::regex IMAG_REGEX{"([+-]?)(\\d*)([ij]?)$"};
@@ -46,6 +46,6 @@ class GaussianInteger {
     GaussianInteger findPrimeFactor() const;
 };
 
-GaussianInteger fromString(const std::string& input);
+GaussianInteger fromString(std::string& input);
 long flooredSqrt(long n);
 std::ostream& operator<<(std::ostream& out, const GaussianInteger& g);
