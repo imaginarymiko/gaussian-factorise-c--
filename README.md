@@ -21,5 +21,3 @@ Also accepts `j` as the imaginary unit. `a + bi` and `bi + a` are both accepted 
     Output: `(7)`<br>
 ```./gaussian-factorise 425 - 470i```<br>
     Output: `(-1)(1 + 2i)(2 + i)(94 + 85i)`<br>
-
-I included a Python version in `/src` if that is of any use as well
