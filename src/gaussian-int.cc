@@ -138,7 +138,8 @@ GaussianInteger GaussianInteger::findPrimeFactor() const {
                         long im = flooredSqrt(i - re * re);
                         if (re * re + im * im == i) {
                             if (re > INT_MAX || im > INT_MAX) throw std::overflow_error("GaussianInteger overflow");
-                            else if (isDivisibleBy(*this, GaussianInteger(static_cast<int>(re), static_cast<int>(im)))) return GaussianInteger(static_cast<int>(re), static_cast<int>(im));
+                            else if (isDivisibleBy(*this, GaussianInteger(static_cast<int>(re), static_cast<int>(im)))) 
+                                return GaussianInteger(static_cast<int>(re), static_cast<int>(im));
                         }
                     }
                 }
@@ -180,11 +181,10 @@ long flooredSqrt(long n) {
     else return static_cast<long>(std::sqrt(n));
 }
 
-GaussianInteger fromString(std::string& input) {
+GaussianInteger fromString(const std::string& input) {
     // Parse a string into a GaussianInteger
-    int real_comp;
-    int imag_comp;
-    input.erase(remove_if(input.begin(), input.end(), ::isspace), input.end());
+    long real_comp;
+    long imag_comp;
     std::smatch match;
     if (std::regex_match(input, match, REAL_REGEX)) {
         real_comp = std::stoi(match[1]);
@@ -199,6 +199,6 @@ GaussianInteger fromString(std::string& input) {
         real_comp = std::stoi(match[4]);
         imag_comp = (match[1] == "-" ? -1 : 1) * (match[2].str().empty() ? 1 : std::stoi(match[2]));
     } else throw std::invalid_argument("Invalid input: " + input);
-    if (real_comp == INT_MIN || real_comp == INT_MAX || imag_comp == INT_MIN || imag_comp == INT_MAX) throw std::overflow_error("GaussianInteger overflow");
+    if (real_comp <= INT_MIN || real_comp >= INT_MAX || imag_comp <= INT_MIN || imag_comp >= INT_MAX) throw std::overflow_error("GaussianInteger overflow");
     else return GaussianInteger(real_comp, imag_comp);
 }

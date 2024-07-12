@@ -52,7 +52,10 @@ int main(int argc, char** argv) {
                     int imag = getRandomInt(-1000, 1000);
                     g = GaussianInteger(real, imag);
                 } else if (input == "help" || input == "h") printHelp();
-                else g = fromString(input);
+                else {
+                    input.erase(remove_if(input.begin(), input.end(), ::isspace), input.end());
+                    g = fromString(input);
+                }
                 std::cout << "Gaussian integer: " << g << std::endl;
                 std::vector<GaussianInteger> factors = g.factorise();
                 for (const GaussianInteger& factor: factors) std::cout << ("(" + factor.toString() + ")");
@@ -70,6 +73,7 @@ int main(int argc, char** argv) {
         else {
             std::string input = "";
             for (int i = 1; i < argc; i++) input += argv[i];
+            input.erase(remove_if(input.begin(), input.end(), ::isspace), input.end());
             GaussianInteger g = fromString(input);
             std::cout << "Gaussian integer: " << g << std::endl;
             std::vector<GaussianInteger> factors = g.factorise();

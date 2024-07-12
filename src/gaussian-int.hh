@@ -46,6 +46,6 @@ class GaussianInteger {
     GaussianInteger findPrimeFactor() const;
 };
 
-GaussianInteger fromString(std::string& input);
+GaussianInteger fromString(const std::string& input);
 long flooredSqrt(long n);
 std::ostream& operator<<(std::ostream& out, const GaussianInteger& g);
