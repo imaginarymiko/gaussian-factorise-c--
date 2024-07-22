@@ -40,13 +40,9 @@ GaussianInteger GaussianInteger::operator+(const GaussianInteger& rhs) const {
     }
 }
 
-GaussianInteger GaussianInteger::operator-(const GaussianInteger& rhs) const {
-    return GaussianInteger(real - rhs.real, imag - rhs.imag);
-}
+GaussianInteger GaussianInteger::operator-(const GaussianInteger& rhs) const { return GaussianInteger(real - rhs.real, imag - rhs.imag); }
 
-GaussianInteger GaussianInteger::operator-() const {
-    return GaussianInteger(-real, -imag);
-}
+GaussianInteger GaussianInteger::operator-() const { return GaussianInteger(-real, -imag); }
 
 GaussianInteger GaussianInteger::operator*(const GaussianInteger& rhs) const {
     long realResult = static_cast<long>(real) * rhs.real - static_cast<long>(imag) * rhs.imag;
