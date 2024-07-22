@@ -2,7 +2,8 @@
 
 GaussianInteger::GaussianInteger(): real(0), imag(0) {}
 
-GaussianInteger::GaussianInteger(int real, int imag): real(real), imag(imag) {
+GaussianInteger::GaussianInteger(int real, int imag): 
+    real{real}, imag{imag} {
     if (real == INT_MIN || real == INT_MAX || imag == INT_MIN || imag == INT_MAX) throw std::overflow_error("GaussianInteger overflow");
 }
 
