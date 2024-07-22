@@ -1,6 +1,7 @@
 #include "gaussian-int.hh"
 
-GaussianInteger::GaussianInteger(): real(0), imag(0) {}
+GaussianInteger::GaussianInteger(): 
+    real{0}, imag{0} {}
 
 GaussianInteger::GaussianInteger(int real, int imag): 
     real{real}, imag{imag} {
