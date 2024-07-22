@@ -31,10 +31,10 @@ void GaussianInteger::setImag(int imag) {
 
 // Operators
 GaussianInteger GaussianInteger::operator+(const GaussianInteger& rhs) const {
-    long re = static_cast<long>(real) + rhs.real;
-    long im = static_cast<long>(imag) + rhs.imag;
+    long realResult = static_cast<long>(real) + rhs.real;
+    long imagResult = static_cast<long>(imag) + rhs.imag;
     try {
-        return GaussianInteger(re, im);
+        return GaussianInteger(realResult, imagResult);
     } catch (std::overflow_error& e) {
         throw std::overflow_error("GaussianInteger overflow");
     }
@@ -49,10 +49,10 @@ GaussianInteger GaussianInteger::operator-() const {
 }
 
 GaussianInteger GaussianInteger::operator*(const GaussianInteger& rhs) const {
-    long re = static_cast<long>(real) * rhs.real - static_cast<long>(imag) * rhs.imag;
-    long im = static_cast<long>(real) * rhs.imag + static_cast<long>(imag) * rhs.real;
+    long realResult = static_cast<long>(real) * rhs.real - static_cast<long>(imag) * rhs.imag;
+    long imagResult = static_cast<long>(real) * rhs.imag + static_cast<long>(imag) * rhs.real;
     try {
-        return GaussianInteger(re, im);
+        return GaussianInteger(realResult, imagResult);
     } catch (std::overflow_error& e) {
         throw std::overflow_error("GaussianInteger overflow");
     }
@@ -72,23 +72,19 @@ GaussianInteger GaussianInteger::operator/(const GaussianInteger& rhs) const {
     if (rhs.real == 0 && rhs.imag == 0) throw std::invalid_argument("Division by zero");
     else if (!isDivisibleBy(*this, rhs)) throw std::invalid_argument("Division not exact");
     else {
-        long re = (static_cast<long>(real) * rhs.real + static_cast<long>(imag) * rhs.imag) / rhs.norm();
-        long im = (static_cast<long>(-real) * rhs.imag + static_cast<long>(imag) * rhs.real) / rhs.norm();
+        long realResult = (static_cast<long>(real) * rhs.real + static_cast<long>(imag) * rhs.imag) / rhs.norm();
+        long imagResult = (static_cast<long>(-real) * rhs.imag + static_cast<long>(imag) * rhs.real) / rhs.norm();
         try {
-            return GaussianInteger(re, im);
+            return GaussianInteger(realResult, imagResult);
         } catch (std::overflow_error& e) {
             throw std::overflow_error("GaussianInteger overflow");
         }
     }
 }
 
-bool GaussianInteger::operator==(const GaussianInteger& rhs) const {
-    return real == rhs.real && imag == rhs.imag;
-}
+bool GaussianInteger::operator==(const GaussianInteger& rhs) const { return real == rhs.real && imag == rhs.imag; }
 
-bool GaussianInteger::operator!=(const GaussianInteger& rhs) const {
-    return !(*this == rhs);
-}
+bool GaussianInteger::operator!=(const GaussianInteger& rhs) const { return !(*this == rhs); }
 
 std::ostream& operator<<(std::ostream& os, const GaussianInteger& g) {
     os << g.toString() << std::endl;
@@ -115,9 +111,7 @@ std::string GaussianInteger::toString() const {
     else return real_str + " - " + std::to_string(-imag) + "i";
 }
 
-GaussianInteger GaussianInteger::conjugate() const {
-    return GaussianInteger(real, -imag);
-}
+GaussianInteger GaussianInteger::conjugate() const { return GaussianInteger(real, -imag); }
 
 long GaussianInteger::norm() const {
     // Prevent overflow by casting to long before multiplying
@@ -134,12 +128,12 @@ GaussianInteger GaussianInteger::findPrimeFactor() const {
             if (n % i == 0) {
                 if (i % 4 == 3) return GaussianInteger(i, 0l);
                 else {
-                    for (long re = flooredSqrt(i); re > 0; --re) {
-                        long im = flooredSqrt(i - re * re);
-                        if (re * re + im * im == i) {
-                            if (re > INT_MAX || im > INT_MAX) throw std::overflow_error("GaussianInteger overflow");
-                            else if (isDivisibleBy(*this, GaussianInteger(static_cast<int>(re), static_cast<int>(im)))) 
-                                return GaussianInteger(static_cast<int>(re), static_cast<int>(im));
+                    for (long realResult = flooredSqrt(i); realResult > 0; --realResult) {
+                        long imagResult = flooredSqrt(i - realResult * realResult);
+                        if (realResult * realResult + imagResult * imagResult == i) {
+                            if (realResult > INT_MAX || imagResult > INT_MAX) throw std::overflow_error("GaussianInteger overflow");
+                            else if (isDivisibleBy(*this, GaussianInteger(static_cast<int>(realResult), static_cast<int>(imagResult)))) 
+                                return GaussianInteger(static_cast<int>(realResult), static_cast<int>(imagResult));
                         }
                     }
                 }
@@ -169,7 +163,7 @@ std::vector<GaussianInteger> GaussianInteger::factorise() const {
     gCheck = gCheck * g;
     if (g.norm() != 1 || gCheck != *this) throw std::runtime_error("Factorisation failed");
     if (g.getReal() != 1) factors.push_back(g);
-    std::sort(factors.begin(), factors.end(), [](const GaussianInteger& g1, const GaussianInteger& g2) {
+    std::sort(factors.begin(), factors.end(), [](const GaussianInteger& g1, const GaussianInteger& g2) -> bool {
         return (g1.norm() < g2.norm()) || ((g1.norm() == g2.norm()) && (g1.getReal() < g2.getReal()));
     });
     return factors;
