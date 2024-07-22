@@ -72,7 +72,7 @@ int main(int argc, char** argv) {
         } else if (arg == "-help" || arg == "-h" || arg == "help" || arg == "h") printHelp();
         else {
             std::string input = "";
-            for (int i = 1; i < argc; i++) input += argv[i];
+            for (int i = 1; i < argc; ++i) input += argv[i];
             input.erase(remove_if(input.begin(), input.end(), ::isspace), input.end());
             GaussianInteger g = fromString(input);
             std::cout << "Gaussian integer: " << g << std::endl;
