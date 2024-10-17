@@ -73,7 +73,7 @@ int main(int argc, char** argv) {
         else {
             std::string input = "";
             for (int i = 1; i < argc; ++i) input += argv[i];
-            input.erase(remove_if(input.begin(), input.end(), ::isspace), input.end());
+            input.erase(std::remove_if(input.begin(), input.end(), ::isspace), input.end());
             GaussianInteger g = fromString(input);
             std::cout << "Gaussian integer: " << g << std::endl;
             std::vector<GaussianInteger> factors = g.factorise();
