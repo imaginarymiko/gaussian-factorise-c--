@@ -1,4 +1,4 @@
-CXX = g++-12
+CXX = g++
 CXXFLAGS = -std=c++20 -Wall -g -MMD
 SRC_DIR = src
 BUILD_DIR = build
